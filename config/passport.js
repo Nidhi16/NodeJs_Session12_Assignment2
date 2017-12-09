@@ -1,13 +1,9 @@
+// load all the things we need
 var express  = require('express');
 var app      = express();
 
 var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-
-// var session = require('express-session');
-// app.use(session({secret: 'googletesting123'}));
-
-// var sessionData;
 
 module.exports = function(passport) {
     // used to serialize the user for the session
@@ -29,6 +25,7 @@ module.exports = function(passport) {
         },
         function (request, token, tokenSecret, profile, done) {
             console.log(profile);
+            // set all of the relevant information
             var sessionData = request.session;
             sessionData.id = profile.id;
             sessionData.token = token;
